@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() {
-kernel.string=Stock Angler Kernel
+kernel.string=Upstreamed Angler Kernel with disabled forced encryption and dm-verity
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
