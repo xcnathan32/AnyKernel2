@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() {
-kernel.string=Stock Shamu Kernel
+kernel.string=Upstreamed Shamu Kernel with disabled forced encryption and dm-verity
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
