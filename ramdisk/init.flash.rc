@@ -1,0 +1,171 @@
+# Flash Kernel initialization script
+# Pieces taken from @anarkia1976, @franciscofranco, @frap129, and @flar2
+
+on boot
+   # initialize frequency limits
+   # from anarkia1976
+   # Little cluster min - 302 MHz
+   chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq_hardlimit
+   chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq_hardlimit
+   write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq_hardlimit 302400
+   # Little cluster max - 1708 MHz
+   chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq_hardlimit
+   chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq_hardlimit
+   write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq_hardlimit 1708800
+   # Big cluster min - 302 MHz
+   chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq_hardlimit
+   chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq_hardlimit
+   write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq_hardlimit 302400
+   # Big cluster max - 2054 MHz
+   chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq_hardlimit
+   chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq_hardlimit
+   write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq_hardlimit 2054400
+
+   # Wake gestures
+   chown root root /sys/android_touch/wake_gestures
+   chmod 666 /sys/android_touch/wake_gestures
+   write /sys/android_touch/wake_gestures 0
+   chmod 644 /sys/android_touch/wake_gestures
+
+   # Disable double tap to wake
+   chown root root /sys/android_touch/doubletap2wake
+   chmod 666 /sys/android_touch/doubletap2wake
+   write /sys/android_touch/doubletap2wake 0
+   chmod 644 /sys/android_touch/doubletap2wake
+
+   # Disable sweep to sleep
+   chown root root /sys/android_touch/sweep2sleep
+   chmod 666 /sys/android_touch/sweep2sleep
+   write /sys/android_touch/sweep2sleep 0
+   chmod 644 /sys/android_touch/sweep2sleep
+
+   # Enable sweep to wake in up and down
+   chown root root /sys/android_touch/sweep2wake
+   chmod 666 /sys/android_touch/sweep2wake
+   write /sys/android_touch/sweep2wake 12
+   chmod 644 /sys/android_touch/sweep2wake
+
+   # Enable camera gesture
+   chown root root /sys/android_touch/camera_gesture
+   chmod 666 /sys/android_touch/camera_gesture
+   write /sys/android_touch/camera_gesture 1
+   chmod 644 /sys/android_touch/camera_gesture
+
+   # Set vibration strength at default 20 (34% in EXKM)
+   chown root root /sys/android_touch/vib_strength
+   chmod 666 /sys/android_touch/vib_strength
+   write /sys/android_touch/vib_strength 20
+   chmod 644 /sys/android_touch/vib_strength
+
+on property:sys.boot_completed=1
+   # according to Qcom this legacy value improves first launch latencies
+   # stock value is 512k
+   # from franciscofranco
+   setprop dalvik.vm.heapminfree 2m
+
+   # I/O scheduler - maple - 512kb
+   write /sys/block/mmcblk0/queue/scheduler maple
+   write /sys/block/mmcblk0/queue/read_ahead_kb 512
+   write /sys/block/mmcblk0/queue/iosched/writes_starved 4
+   write /sys/block/mmcblk0/queue/iosched/fifo_batch 16
+   write /sys/block/mmcblk0/queue/iosched/sync_read_expire 350
+   write /sys/block/mmcblk0/queue/iosched/sync_write_expire 550
+   write /sys/block/mmcblk0/queue/iosched/async_read_expire 250
+   write /sys/block/mmcblk0/queue/iosched/async_write_expire 450
+   write /sys/block/mmcblk0/queue/iosched/sleep_latency_multiple 10
+   
+   # Little cluster governor - interactve
+   chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+   chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+   write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+   # Little cluster min - 302 MHz
+   chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+   chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+   write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 302400
+   # Little cluster max - 1708 MHz
+   chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+   chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+   write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1708800
+   # Big cluster governor - interactve 
+   chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
+   chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
+   write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor interactive
+   # Big cluster min - 302 MHz
+   chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+   chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+   write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 302400
+   # Big cluster max - 2054 MHz
+   chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+   chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+   write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2054400
+
+   # Governor settings from soniCron - GlassFish 1.2
+   # Litte cluster settings
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 91
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 60000
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 960000
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack 480000
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "80 460800:70 600000:99"
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows 1
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration 0
+  
+   # Big cluster settings
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 91
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 30000
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 960000
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack 480000
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "70 960000:90 1440000:99"
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/boost 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/align_windows 1
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration 0
+
+   # Input boost settings: 600MHz on little for 1920ms
+   write /sys/module/cpu_boost/parameters/input_boost_enabled 1
+   write /sys/module/cpu_boost/parameters/input_boost_freq "0:600000 1:600000 2:600000 3:600000 4:0 5:0 6:0 7:0"
+   write /sys/module/cpu_boost/parameters/boost_ms 0
+   write /sys/module/cpu_boost/parameters/input_boost_ms 1920
+
+   # Core control disabled, msm_thermal enabled
+   write /sys/module/msm_thermal/core_control/enabled 0
+   write /sys/module/msm_thermal/parameters/enabled Y
+
+   # Backlight dimmer
+   write /sys/module/mdss_fb/parameters/backlight_dimmer 1
+
+   # Tune Adrenoboost
+   write /sys/devices/soc.0/fdb00000.qcom,kgsl-3d0/devfreq/fdb00000.qcom,kgsl-3d0/adrenoboost 1
+
+   # Sound settings
+   write /sys/kernel/sound_control/speaker_gain "25 25"
+   write /sys/kernel/sound_control/headphone_pa_gain "1 1"
+   write /sys/kernel/sound_control/mic_gain 5
+   write /sys/kernel/sound_control/headphone_gain "5 5"
+
+   # zswap
+   write /sys/module/zswap/parameters/enabled Y
+
+   # Wakelock dividers
+   write /sys/module/bcmdhd/parameters/wlrx_divide 8
+   write /sys/module/bcmdhd/parameters/wlctrl_divide 8
+
+   # re-enable retention idle state
+   # fix-up is merged in the Kernel
+   write /sys/module/lpm_levels/system/a53/cpu0/retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a53/cpu1/retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a53/cpu2/retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a53/cpu3/retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a57/cpu4/retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a57/cpu5/retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a53/a53-l2-retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a57/a57-l2-retention/idle_enabled 1
