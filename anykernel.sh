@@ -36,6 +36,8 @@ dump_boot;
 
 # begin ramdisk changes
 
+replace_section init.shamu.rc "service mpdecision" "disabled" "#service mpdecision /system/bin/mpdecision --avg_comp\n#   class main\n#   user root\n#   group root readproc\n#    writepid /dev/cpuset/system-background/tasks\n#   disabled";
+
 # end ramdisk changes
 
 write_boot;
