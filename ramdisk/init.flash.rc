@@ -70,6 +70,9 @@ on property:sys.boot_completed=1
    write /sys/module/cpu_boost/parameters/boost_ms 0
    write /sys/module/cpu_boost/parameters/input_boost_ms 40
 
+   # Disable UKSM by default
+   write /sys/kernel/mm/uksm/run 0
+
    # Wakelock dividers
    # This will help with disconnects on poorly configured 5GHz networks
    write /sys/module/bcmdhd/parameters/wlrx_divide 8
