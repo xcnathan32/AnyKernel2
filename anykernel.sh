@@ -47,6 +47,10 @@ backup_file file_contexts;
 insert_line file_contexts "frandom" after "urandom" "/dev/frandom		u:object_r:frandom_device:s0\n";
 insert_line file_contexts "erandom" after "urandom" "/dev/erandom		u:object_r:erandom_device:s0\n";
 
+# irq balance
+replace_string init.angler.rc "service msm_irqbalance /system/bin/msm_irqbalance -f /msm_irqbalance.conf" "service msm_irqbalance /system/bin/msm_irqbalance -f /system/etc/msm_irqbalance.conf" "service 
+msm_irqbalance /system/bin/msm_irqbalance -f /msm_irqbalance.conf"
+
 # end ramdisk changes
 
 write_boot;

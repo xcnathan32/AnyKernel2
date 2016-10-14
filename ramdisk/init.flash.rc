@@ -27,6 +27,9 @@ on property:sys.boot_completed=1
    # from franciscofranco
    setprop dalvik.vm.heapminfree 2m
 
+   # cpuset
+   write /dev/cpuset/background/cpus 0-2
+
    # Default I/O values
    # zen as I think it is the best balance
    # 128 because we don't need a lot of CPU overhead on an SSD and users are always free to change this
@@ -71,3 +74,22 @@ on property:sys.boot_completed=1
    # This will help with disconnects on poorly configured 5GHz networks
    write /sys/module/bcmdhd/parameters/wlrx_divide 8
    write /sys/module/bcmdhd/parameters/wlctrl_divide 8
+
+   # re-enable retention idle state
+   # fix-up is merged in the Kernel
+   write /sys/module/lpm_levels/system/a53/cpu0/retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a53/cpu1/retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a53/cpu2/retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a53/cpu3/retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a57/cpu4/retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a57/cpu5/retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a53/a53-l2-retention/idle_enabled 1
+   write /sys/module/lpm_levels/system/a57/a57-l2-retention/idle_enabled 1
+
+   # bcmdhd wakeup sources
+   write /sys/module/wakeup/parameters/enable_wlan_rx_wake_ws 0
+   write /sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws 0
+   write /sys/module/wakeup/parameters/enable_wlan_wake_ws 0
+
+   # Special power script
+   exec u:r:init:s0 root root -- /init.special_power.sh
