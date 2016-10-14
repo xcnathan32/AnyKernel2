@@ -66,9 +66,9 @@ on property:sys.boot_completed=1
    # cpuset
    write /dev/cpuset/background/cpus 0-2
 
-   # I/O scheduler - maple - 512kb
+   # I/O scheduler - maple - 1024kb
    write /sys/block/mmcblk0/queue/scheduler maple
-   write /sys/block/mmcblk0/queue/read_ahead_kb 512
+   write /sys/block/mmcblk0/queue/read_ahead_kb 1024
    write /sys/block/mmcblk0/queue/iosched/writes_starved 4
    write /sys/block/mmcblk0/queue/iosched/fifo_batch 16
    write /sys/block/mmcblk0/queue/iosched/sync_read_expire 350
@@ -161,6 +161,11 @@ on property:sys.boot_completed=1
 
    # zswap
    write /sys/module/zswap/parameters/enabled Y
+
+   # UKSM config
+   write /sys/kernel/mm/uksm/cpu_governor medium
+   write /sys/kernel/mm/uksm/max_cpu_percentage 60
+   write /sys/kernel/mm/uksm/run 1
 
    # Wakelock dividers
    write /sys/module/bcmdhd/parameters/wlrx_divide 8
