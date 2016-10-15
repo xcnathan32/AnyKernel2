@@ -33,10 +33,10 @@ on boot
    write /sys/android_touch/doubletap2wake 0
    chmod 644 /sys/android_touch/doubletap2wake
 
-   # Disable sweep to sleep
+   # Enable sweep to sleep
    chown root root /sys/android_touch/sweep2sleep
    chmod 666 /sys/android_touch/sweep2sleep
-   write /sys/android_touch/sweep2sleep 0
+   write /sys/android_touch/sweep2sleep 3
    chmod 644 /sys/android_touch/sweep2sleep
 
    # Enable sweep to wake in up and down
@@ -51,10 +51,10 @@ on boot
    write /sys/android_touch/camera_gesture 1
    chmod 644 /sys/android_touch/camera_gesture
 
-   # Set vibration strength at default 20 (34% in EXKM)
+   # Set vibration strength to 27 (50% in EXKM)
    chown root root /sys/android_touch/vib_strength
    chmod 666 /sys/android_touch/vib_strength
-   write /sys/android_touch/vib_strength 20
+   write /sys/android_touch/vib_strength 27
    chmod 644 /sys/android_touch/vib_strength
 
 on property:sys.boot_completed=1
@@ -166,6 +166,10 @@ on property:sys.boot_completed=1
    write /sys/kernel/mm/uksm/cpu_governor medium
    write /sys/kernel/mm/uksm/max_cpu_percentage 60
    write /sys/kernel/mm/uksm/run 1
+
+   # Vibration strength
+   write /sys/class/timed_output/vibrator/vmax_mv_strong 2000
+   write /sys/class/timed_output/vibrator/vmax_mv_light 1650
 
    # Wakelock dividers
    write /sys/module/bcmdhd/parameters/wlrx_divide 8
