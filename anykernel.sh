@@ -36,6 +36,9 @@ dump_boot;
 
 # begin ramdisk changes
 
+# init.flash.rc
+insert_line init.bullhead.rc "init.flash.rc" after "import init.bullhead.misc.rc" "import init.flash.rc"
+
 # Add frandom compatibility
 backup_file ueventd.rc;
 insert_line ueventd.rc "frandom" after "urandom" "/dev/frandom              0666   root       root\n";
@@ -43,6 +46,10 @@ insert_line ueventd.rc "erandom" after "urandom" "/dev/erandom              0666
 backup_file file_contexts;
 insert_line file_contexts "frandom" after "urandom" "/dev/frandom		u:object_r:frandom_device:s0\n";
 insert_line file_contexts "erandom" after "urandom" "/dev/erandom		u:object_r:erandom_device:s0\n";
+
+# irq tweaks
+replace_string init.bullhead.rc "service msm_irqbalance /system/bin/msm_irqbalance -f /msm_irqbalance.conf" "service msm_irqbalance /system/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance.conf" "service 
+msm_irqbalance /system/bin/msm_irqbalance -f /msm_irqbalance.conf"
 
 # end ramdisk changes
 
