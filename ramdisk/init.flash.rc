@@ -92,47 +92,6 @@ on property:sys.boot_completed=1
    chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1958400
 
-   # Governor settings from xperator - Excalibur v2
-   # Little cluster settings
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/go_hispeed_load 200
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/above_hispeed_delay 30000
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/timer_rate 50000
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/hispeed_freq 768000
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/timer_slack -1
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/target_loads "65 384000:45 460800:35 600000:20 672000:50 768000:60 864000:40 960000:85 1248000:50 1344000:95 1478400:96 1555200:97"
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/min_sample_time 30000
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/ignore_hispeed_on_notif 0
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/boost 0
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fast_ramp_down 0
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/align_windows 0
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/use_migration_notif 1
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/use_sched_load 0
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/max_freq_hysteresis 80000
-   write /sys/devices/system/cpu/cpu0/cpufreq/flash/boostpulse_duration 0
-
-   # Big cluster settings
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/go_hispeed_load 200
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/above_hispeed_delay "30000 1248000:50000"
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/timer_rate 50000
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/hispeed_freq 633600
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/timer_slack -1
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/target_loads "30 768000:40 864000:50 960000:70 1248000:77 1344000:80 1440000:90 1536000:95 1632000:98 1728000:99 1824000:100"
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/min_sample_time 40000
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/ignore_hispeed_on_notif 0
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/boost 0
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fast_ramp_down 0
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/align_windows 0
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/use_migration_notif 1
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/use_sched_load 0
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/max_freq_hysteresis 80000
-   write /sys/devices/system/cpu/cpu4/cpufreq/flash/boostpulse_duration 0
-
-   # Input boost settings
-   write /sys/module/cpu_boost/parameters/input_boost_enabled 1
-   write /sys/module/cpu_boost/parameters/input_boost_freq "0:672000 1:672000 2:672000 3:672000 4:0 5:0 6:0 7:0"
-   write /sys/module/cpu_boost/parameters/boost_ms 0
-   write /sys/module/cpu_boost/parameters/input_boost_ms 40
-
    # Core control disabled, msm_thermal enabled
    write /sys/module/msm_thermal/core_control/enabled 0
    write /sys/module/msm_thermal/parameters/enabled Y
