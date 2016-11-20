@@ -177,6 +177,9 @@ on property:sys.boot_completed=1
    # Enable Laptop Mode
    write /proc/sys/vm/laptop_mode 1
 
+   # Process reclaim
+   write /proc/PID/reclaim all
+
    # bcmdhd wakeup sources
    write /sys/module/wakeup/parameters/enable_wlan_rx_wake_ws 0
    write /sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws 0
