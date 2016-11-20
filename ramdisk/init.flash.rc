@@ -77,6 +77,9 @@ on property:sys.boot_completed=1
    write /sys/module/bcmdhd/parameters/wlrx_divide 8
    write /sys/module/bcmdhd/parameters/wlctrl_divide 8
 
+   # Process reclaim
+   write /proc/PID/reclaim all
+
    # bcmdhd wakeup sources
    write /sys/module/wakeup/parameters/enable_wlan_wow_wl_ws 0
    write /sys/module/wakeup/parameters/enable_wlan_ws 0
