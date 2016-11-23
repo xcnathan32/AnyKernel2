@@ -39,6 +39,9 @@ on boot
    chmod 644 /sys/android_touch/vib_strength
 
 on property:sys.boot_completed=1
+   # allows FKUpdater to know this feature is supported
+   setprop fku.profiles 1
+
    # according to Qcom this legacy value improves first launch latencies
    # stock value is 512k
    # from franciscofranco
@@ -119,7 +122,7 @@ on property:sys.boot_completed=1
    write /sys/module/cpu_boost/parameters/input_boost_enabled 1
    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1248000 1:1248000 2:1248000 3:1248000 4:0 5:0 6:0 7:0"
    write /sys/module/cpu_boost/parameters/boost_ms 0
-   write /sys/module/cpu_boost/parameters/input_boost_ms 50
+   write /sys/module/cpu_boost/parameters/input_boost_ms 60
 
    # Disable UKSM by default
    write /sys/kernel/mm/uksm/run 0
