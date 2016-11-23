@@ -46,6 +46,9 @@ dump_boot;
 # init.flash.rc
 insert_line init.bullhead.rc "init.flash.rc" after "import init.bullhead.misc.rc" "import init.flash.rc"
 
+# init.performance_profiles.rc
+insert_line init.bullhead.rc "performance_profiles" after "import init.bullhead.ramdump.rc" "import init.performance_profiles.rc";
+
 # Add frandom compatibility
 backup_file ueventd.rc;
 insert_line ueventd.rc "frandom" after "urandom" "/dev/frandom              0666   root       root\n";

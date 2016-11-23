@@ -1,4 +1,7 @@
 on property:sys.boot_completed=1
+   # allows FKUpdater to know this feature is supported
+   setprop fku.profiles 1
+
    # according to Qcom this legacy value improves first launch latencies
    # stock value is 512k
    # from franciscofranco
@@ -40,12 +43,31 @@ on property:sys.boot_completed=1
    chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1824000
 
+   # Little cluster settings
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 100
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "35 460800:40 600000:45 672000:50 787200:55 864000:60 960000:70 1248000:85"
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 20000
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 40000
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 1
+   write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 80000
+
+   # Big cluster settings
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay 40000
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 85
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 768000
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "85 1248000:90 1536000:99"
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 20000
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 20000
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/ignore_hispeed_on_notif 1
+   write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 80000
+
    # Input boost settings
-   # 960MHz on little for 40ms
-   # Should keep performance snappy while helping with battery a little bit
-   write /sys/module/cpu_boost/parameters/input_boost_freq "0:960000 1:0 2:0 3:0 4:0 5:0"
-   write /sys/module/cpu_boost/parameters/boost_ms 0
+   write /sys/module/cpu_boost/parameters/input_boost_enabled 1
+   write /sys/module/cpu_boost/parameters/input_boost_freq "0:1248000 4:768000"
    write /sys/module/cpu_boost/parameters/input_boost_ms 40
+   write /sys/module/cpu_boost/parameters/boost_ms 0
 
    # Disable UKSM by default
    write /sys/kernel/mm/uksm/run 0
