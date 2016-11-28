@@ -61,6 +61,14 @@ insert_line file_contexts "erandom" after "urandom" "/dev/erandom		u:object_r:er
 replace_string init.angler.rc "service msm_irqbalance /system/bin/msm_irqbalance -f /msm_irqbalance.conf" "service msm_irqbalance /system/bin/msm_irqbalance -f /system/etc/msm_irqbalance.conf" "service 
 msm_irqbalance /system/bin/msm_irqbalance -f /msm_irqbalance.conf"
 
+# Set permissive on boot - but only if not already permissive
+cmdfile=`ls $split_img/*-cmdline`;
+cmdtmp=`cat $cmdfile`;
+case "$cmdtmp" in
+  *selinux=permissive*) ;;
+  *) rm $cmdfile; echo "androidboot.selinux=permissive $cmdtmp" > $cmdfile;;
+esac;
+
 # end ramdisk changes
 
 write_boot;
