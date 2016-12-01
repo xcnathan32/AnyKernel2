@@ -109,6 +109,8 @@ on property:sys.boot_completed=1
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/min_sample_time 60000
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/ignore_hispeed_on_notif 1
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/max_freq_hysteresis 80000
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/boost 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/boostpulse_duration 0
 
    # Big cluster settings
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/above_hispeed_delay "40000 1248000:60000 1728000:20000"
@@ -119,11 +121,14 @@ on property:sys.boot_completed=1
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/min_sample_time 30000
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/ignore_hispeed_on_notif 1
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/max_freq_hysteresis 80000
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/boost 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/boostpulse_duration 0
 
    # Input boost settings
    write /sys/module/cpu_boost/parameters/input_boost_enabled 1
    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1248000 4:768000"
    write /sys/module/cpu_boost/parameters/input_boost_ms 60
+   write /sys/module/cpu_boost/parameters/boost_ms 0
 
    # Core control disabled, msm_thermal enabled
    write /sys/module/msm_thermal/core_control/enabled 0
