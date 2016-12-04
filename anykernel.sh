@@ -50,16 +50,15 @@ insert_line init.angler.rc "init.flash.rc" after "import init.angler.sensorhub.r
 insert_line init.angler.rc "performance_profiles" after "import init.angler.sensorhub.rc" "import init.performance_profiles.rc";
 
 # Add frandom compatibility
-backup_file ueventd.rc;
-insert_line ueventd.rc "frandom" after "urandom" "/dev/frandom              0666   root       root\n";
-insert_line ueventd.rc "erandom" after "urandom" "/dev/erandom              0666   root       root\n";
+backup_file ueventd.angler.rc;
+insert_line ueventd.angler.rc "erandom" before "/dev/genlock" "/dev/erandom              0666   root       root\n";
+insert_line ueventd.angler.rc "frandom" before "/dev/genlock" "/dev/frandom              0666   root       root\n";
 backup_file file_contexts;
 insert_line file_contexts "frandom" after "urandom" "/dev/frandom		u:object_r:frandom_device:s0\n";
 insert_line file_contexts "erandom" after "urandom" "/dev/erandom		u:object_r:erandom_device:s0\n";
 
 # irq balance
-replace_string init.angler.rc "service msm_irqbalance /system/bin/msm_irqbalance -f /msm_irqbalance.conf" "service msm_irqbalance /system/bin/msm_irqbalance -f /system/etc/msm_irqbalance.conf" "service 
-msm_irqbalance /system/bin/msm_irqbalance -f /msm_irqbalance.conf"
+replace_string init.angler.rc "service msm_irqbalance /vendor/bin/msm_irqbalance -f /msm_irqbalance.conf" "service msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance.conf" "service msm_irqbalance /vendor/bin/msm_irqbalance -f /msm_irqbalance.conf"
 
 # Set permissive on boot - but only if not already permissive
 cmdfile=`ls $split_img/*-cmdline`;
