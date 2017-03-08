@@ -18,11 +18,6 @@ function get-set-forall() {
     done
 }
 
-# macro to write pids to system-background cpuset
-function writepid_sbg() {
-    echo -n $1 > /dev/cpuset/system-background/tasks
-}
-
 ################################################################################
 
 # devfreq
@@ -39,35 +34,3 @@ get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/guard_band_mbps 0
 get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/up_scale 250
 get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/idle_mbps 1600
 get-set-forall /sys/class/devfreq/qcom,mincpubw*/governor cpufreq
-
-sleep 20
-
-LOGCAT=`pidof logcat`
-RMT_STORAGE=`pidof rmt_storage`
-QMUXD=`pidof qmuxd`
-QTI=`pidof qti`
-NETMGRD=`pidof netmgrd`
-THERMALENGINE=`pidof thermal-engine`
-WPA_SUPPLICANT=`pidof wpa_supplicant`
-LOC_LAUNCHER=`pidof loc_launcher`
-QSEECOMD=`pidof qseecomd`
-TIME_DAEMON=`pidof time_daemon`
-CND=`pidof cnd`
-IMSQMIDAEMON=`pidof imsqmidaemon`
-IMSDATADAEMON=`pidof imsdatadaemon`
-FINGERPRINTD=`pidof fingerprintd`
-
-writepid_sbg $LOGCAT
-writepid_sbg $RMT_STORAGE
-writepid_sbg $QMUXD
-writepid_sbg $QTI
-writepid_sbg $NETMGRD
-writepid_sbg $THERMALENGINE
-writepid_sbg $WPA_SUPPLICANT
-writepid_sbg $LOC_LAUNCHER
-writepid_sbg $QSEECOMD
-writepid_sbg $TIME_DAEMON
-writepid_sbg $CND
-writepid_sbg $IMSQMIDAEMON
-writepid_sbg $IMSDATADAEMON
-writepid_sbg $FINGERPRINTD
