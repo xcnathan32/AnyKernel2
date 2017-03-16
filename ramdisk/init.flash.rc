@@ -23,10 +23,10 @@ on property:sys.boot_completed=1
    write /sys/block/mmcblk0/queue/scheduler zen
    write /sys/block/mmcblk0/queue/read_ahead_kb 512
 
-   # Little cluster governor - interactive
+   # Little cluster governor - flash
    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-   write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+   write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor flash
    # Little cluster min - 384 MHz
    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
@@ -37,10 +37,10 @@ on property:sys.boot_completed=1
    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1555200
    chmod 0444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-   # Big cluster governor - interactive
+   # Big cluster governor - flash
    chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
    chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
-   write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor interactive
+   write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor flash
    # Big cluster min - 633 MHz
    chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
    chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
@@ -52,9 +52,40 @@ on property:sys.boot_completed=1
    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1958400
    chmod 0444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
 
+   # Governor settings by me: Flash 1.1
+   # Little cluster settings
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/go_hispeed_load 99
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/above_hispeed_delay "20000 1344000:40000"
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/timer_rate 30000
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/hispeed_freq 768000
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/timer_slack -1
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/target_loads "60 384000:50 460800:50 600000:55 672000:60 768000:60 864000:60 960000:85 1248000:90 1344000:80 1478000:90 1555200:95"
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/min_sample_time 60000
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/ignore_hispeed_on_notif 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fast_ramp_down 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/align_windows 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/use_migration_notif 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/use_sched_load 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/max_freq_hysteresis 80000
+
+   # Big cluster settings
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/go_hispeed_load 95
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/above_hispeed_delay "40000 960000:60000 1728000:20000"
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/timer_rate 30000
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/hispeed_freq 633600
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/timer_slack -1
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/target_loads "95 633600:75 768000:85 864000:85 960000:88 1248000:95 1344000:95 1444000:95 1536000:95 1632000:95 1728000:98 1824000:99 1958000:100"
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/min_sample_time 30000
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/ignore_hispeed_on_notif 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fast_ramp_down 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/align_windows 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/use_migration_notif 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/use_sched_load 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/max_freq_hysteresis 80000
+
    # Input boost configuration
    write /sys/module/cpu_boost/parameters/input_boost_enabled 1
-   write /sys/module/cpu_boost/parameters/input_boost_freq "0:960000 1:960000 2:960000 3:960000 4:0 5:0 6:0 7:0"
+   write /sys/module/cpu_boost/parameters/input_boost_freq "0:1248000 1:1248000 2:1248000 3:1248000 4:0 5:0 6:0 7:0"
    write /sys/module/cpu_boost/parameters/input_boost_ms 60
 
    # Lazyplug
