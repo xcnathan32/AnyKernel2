@@ -131,6 +131,8 @@ on property:sys.boot_completed=1
    write /sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws 0
    write /sys/module/wakeup/parameters/enable_wlan_wake_ws 0
    write /sys/module/wakeup/parameters/enable_ipa_ws 0
+   write /sys/module/wakeup/parameters/enable_timerfd_ws 0
+   write /sys/module/wakeup/parameters/enable_netlink_ws 0
 
    # Special power script
    exec u:r:init:s0 root root -- /init.special_power.sh
