@@ -80,9 +80,11 @@ on property:sys.boot_completed=1
    chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
    chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
 
-   # Core control disabled, msm_thermal enabled
-   write /sys/module/msm_thermal/core_control/enabled 0
-   write /sys/module/msm_thermal/parameters/enabled Y
+   # Configure IntelliThermal
+   write /sys/modules/msm_thermal/core_control/enabled 0
+   write /sys/modules/msm_thermal/parameters/enabled 1
+   write /sys/modules/msm_thermal/parameters/limit_temp_degC 64
+   write /sys/modules/msm_thermal/parameters/poll_ms 3
 
    # Lazyplug
    write /sys/module/lazyplug/parameters/lazyplug_active 1
