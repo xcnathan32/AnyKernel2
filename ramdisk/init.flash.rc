@@ -92,7 +92,7 @@ on property:sys.boot_completed=1
    write /sys/kernel/sound_control/headphone_gain "6 6"
 
    # Enable PDesireAudio
-   write /sys/modules/snd_soc_wcd9330/uhqa_mode_pdesireaudio 1
+   write /sys/module/snd_soc_wcd9330/uhqa_mode_pdesireaudio 1
 
    # UKSM
    write /sys/kernel/mm/uksm/run 1
