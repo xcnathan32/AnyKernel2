@@ -79,9 +79,6 @@ on property:sys.boot_completed=1
    write /sys/module/msm_thermal/parameters/core_limit_temp_degC 64
    write /sys/module/msm_thermal/parameters/poll_ms 3
 
-   # Lazyplug
-   write /sys/module/lazyplug/parameters/lazyplug_active 1
-
    # Backlight dimmer
    write /sys/module/mdss_fb/parameters/backlight_dimmer 1
 
