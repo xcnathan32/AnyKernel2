@@ -37,6 +37,11 @@ on property:persist.spectrum.profile=0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/use_migration_notif 1
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/use_sched_load 0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/max_freq_hysteresis 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fastlane 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fastlane_threshold 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/powersave_bias 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/ignore_hispeed_on_notif 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fast_ramp_down 0
    # Big values
    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor flash
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/go_hispeed_load 150
@@ -50,6 +55,11 @@ on property:persist.spectrum.profile=0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/use_migration_notif 1
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/use_sched_load 0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/max_freq_hysteresis 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fastlane 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fastlane_threshold 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/powersave_bias 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/ignore_hispeed_on_notif 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fast_ramp_down 0
    # Input boost values
    write /sys/module/cpu_boost/parameters/input_boost_enabled 1
    write /sys/module/cpu_boost/parameters/input_boost_freq "0:600000 1:600000 2:600000 3:600000 4:633600 5:633600 6:633600 7:633600"
@@ -88,6 +98,11 @@ on property:persist.spectrum.profile=1
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/use_migration_notif 0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/use_sched_load 0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/max_freq_hysteresis 80000
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fastlane 1
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fastlane_threshold 65
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/powersave_bias 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/ignore_hispeed_on_notif 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fast_ramp_down 0
    # Big values
    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor flash
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/go_hispeed_load 95
@@ -101,6 +116,11 @@ on property:persist.spectrum.profile=1
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/use_migration_notif 0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/use_sched_load 0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/max_freq_hysteresis 80000
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fastlane 1
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fastlane_threshold 80
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/powersave_bias 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/ignore_hispeed_on_notif 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fast_ramp_down 0
    # Input boost values
    write /sys/module/cpu_boost/parameters/input_boost_enabled 1
    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1248000 1:1248000 2:1248000 3:1248000 4:768000 5:768000 6:768000 7:768000"
@@ -140,6 +160,11 @@ on property:persist.spectrum.profile=2
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/use_migration_notif 0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/use_sched_load 0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/max_freq_hysteresis 80000
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fastlane 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fastlane_threshold 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/powersave_bias 1
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/ignore_hispeed_on_notif 1
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fast_ramp_down 1
    # Big values
    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor flash
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/go_hispeed_load 99
@@ -153,6 +178,11 @@ on property:persist.spectrum.profile=2
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/use_migration_notif 0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/use_sched_load 0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/max_freq_hysteresis 80000
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fastlane 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fastlane_threshold 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/powersave_bias 1
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/ignore_hispeed_on_notif 1
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fast_ramp_down 1
    # Input boost values
    write /sys/module/cpu_boost/parameters/input_boost_enabled 0
    write /sys/module/cpu_boost/parameters/input_boost_freq "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0"
@@ -187,6 +217,11 @@ on property:persist.spectrum.profile=3
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/use_sched_load 1
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/max_freq_hysteresis 80000
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/timer_slack 30000
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fastlane 1
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fastlane_threshold 50
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/powersave_bias 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/ignore_hispeed_on_notif 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/fast_ramp_down 0
    # Big values
    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor flash
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/above_hispeed_delay "20000 1248000:40000 1728000:20000"
@@ -199,6 +234,11 @@ on property:persist.spectrum.profile=3
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/use_sched_load 1
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/max_freq_hysteresis 80000
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/timer_slack 30000
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fastlane 1
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fastlane_threshold 70
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/powersave_bias 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/ignore_hispeed_on_notif 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/fast_ramp_down 0
    # Input boost values
    write /sys/module/cpu_boost/parameters/input_boost_enabled 1
    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1555200 1:1555200 2:1555200 3:1555200 4:960000 5:960000 6:960000 7:960000"
