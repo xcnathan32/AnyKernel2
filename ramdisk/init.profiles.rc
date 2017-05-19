@@ -40,6 +40,7 @@ on property:persist.spectrum.profile=0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/powersave_bias 0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/ignore_hispeed_on_notif 0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/fast_ramp_down 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/screen_off_maxfreq 960000
    # Big values
    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor flash
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/go_hispeed_load 150
@@ -58,6 +59,7 @@ on property:persist.spectrum.profile=0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/powersave_bias 0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/ignore_hispeed_on_notif 0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/fast_ramp_down 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/screen_off_maxfreq 864000
    # Input boost values
    write /sys/module/cpu_boost/parameters/input_boost_enabled 1
    write /sys/module/cpu_boost/parameters/input_boost_freq "0:600000 1:600000 2:600000 3:600000 4:633600 5:633600 6:633600 7:633600"
@@ -101,6 +103,7 @@ on property:persist.spectrum.profile=1
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/powersave_bias 0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/ignore_hispeed_on_notif 0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/fast_ramp_down 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/screen_off_maxfreq 1248000
    # Big values
    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor flash
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/go_hispeed_load 95
@@ -119,6 +122,7 @@ on property:persist.spectrum.profile=1
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/powersave_bias 0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/ignore_hispeed_on_notif 0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/fast_ramp_down 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/screen_off_maxfreq 960000
    # Input boost values
    write /sys/module/cpu_boost/parameters/input_boost_enabled 1
    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1248000 1:1248000 2:1248000 3:1248000 4:768000 5:768000 6:768000 7:768000"
@@ -163,6 +167,7 @@ on property:persist.spectrum.profile=2
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/powersave_bias 1
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/ignore_hispeed_on_notif 1
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/fast_ramp_down 1
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/screen_off_maxfreq 864000
    # Big values
    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor flash
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/go_hispeed_load 99
@@ -181,6 +186,7 @@ on property:persist.spectrum.profile=2
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/powersave_bias 1
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/ignore_hispeed_on_notif 1
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/fast_ramp_down 1
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/screen_off_maxfreq 633600
    # Input boost values
    write /sys/module/cpu_boost/parameters/input_boost_enabled 0
    write /sys/module/cpu_boost/parameters/input_boost_freq "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0"
@@ -220,6 +226,7 @@ on property:persist.spectrum.profile=3
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/powersave_bias 0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/ignore_hispeed_on_notif 0
    write /sys/devices/system/cpu/cpu0/cpufreq/flash/fast_ramp_down 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/flash/screen_off_maxfreq 1708800
    # Big values
    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor flash
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/above_hispeed_delay "20000 1248000:40000 1728000:20000"
@@ -237,6 +244,7 @@ on property:persist.spectrum.profile=3
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/powersave_bias 0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/ignore_hispeed_on_notif 0
    write /sys/devices/system/cpu/cpu4/cpufreq/flash/fast_ramp_down 0
+   write /sys/devices/system/cpu/cpu4/cpufreq/flash/screen_off_maxfreq 2054400
    # Input boost values
    write /sys/module/cpu_boost/parameters/input_boost_enabled 1
    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1555200 1:1555200 2:1555200 3:1555200 4:960000 5:960000 6:960000 7:960000"
