@@ -35,13 +35,9 @@ on property:sys.boot_completed=1
    # Enable Fingerprint boost
    write /sys/kernel/fp_boost/enabled 1
 
-   # Configure IntelliThermal
+   # Disable core control, enable msm_thermal
    write /sys/module/msm_thermal/core_control/enabled 0
    write /sys/module/msm_thermal/parameters/enabled 1
-   write /sys/module/msm_thermal/parameters/hotplug_enabled 0
-   write /sys/module/msm_thermal/parameters/limit_temp_degC 64
-   write /sys/module/msm_thermal/parameters/core_limit_temp_degC 64
-   write /sys/module/msm_thermal/parameters/poll_ms 3
 
    # Backlight dimmer
    write /sys/module/mdss_fb/parameters/backlight_dimmer 1
