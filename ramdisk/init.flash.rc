@@ -23,10 +23,10 @@ on boot
    write /sys/android_touch/sweep2sleep 0
    chmod 644 /sys/android_touch/sweep2sleep
 
-   # Enable sweep to wake in up and down
+   # Enable sweep to wake in up direction
    chown root root /sys/android_touch/sweep2wake
    chmod 666 /sys/android_touch/sweep2wake
-   write /sys/android_touch/sweep2wake 12
+   write /sys/android_touch/sweep2wake 4
    chmod 644 /sys/android_touch/sweep2wake
 
    # Enable camera gesture
@@ -139,4 +139,3 @@ on property:sys.boot_completed=1
 
    # Special power script
    exec u:r:init:s0 root root -- /init.special_power.sh
-   exec u:r:su:s0 root root -- /init.special_power.sh
