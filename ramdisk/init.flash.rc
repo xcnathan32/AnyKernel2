@@ -29,10 +29,10 @@ on boot
    write /sys/android_touch/sweep2wake 4
    chmod 644 /sys/android_touch/sweep2wake
 
-   # Enable camera gesture
+   # Disable camera gesture
    chown root root /sys/android_touch/camera_gesture
    chmod 666 /sys/android_touch/camera_gesture
-   write /sys/android_touch/camera_gesture 1
+   write /sys/android_touch/camera_gesture 0
    chmod 644 /sys/android_touch/camera_gesture
 
    # Set vibration strength to 27 (50% in EXKM)
