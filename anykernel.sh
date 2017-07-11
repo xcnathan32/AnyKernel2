@@ -45,6 +45,9 @@ dump_boot;
 
 # begin ramdisk changes
 
+# init.flash.rc
+insert_line init.angler.rc "init.flash.rc" after "import init.angler.sensorhub.rc" "import init.flash.rc";
+
 # end ramdisk changes
 
 write_boot;

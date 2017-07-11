@@ -1,0 +1,43 @@
+# Flash Kernel initialization script
+# Pieces taken from @anarkia1976, @franciscofranco, @frap129, and @flar2
+
+on boot
+    # Wake gestures
+    chown root root /sys/android_touch/wake_gestures
+    chmod 666 /sys/android_touch/wake_gestures
+    write /sys/android_touch/wake_gestures 0
+    chmod 644 /sys/android_touch/wake_gestures
+
+    # Disable double tap to wake
+    chown root root /sys/android_touch/doubletap2wake
+    chmod 666 /sys/android_touch/doubletap2wake
+    write /sys/android_touch/doubletap2wake 0
+    chmod 644 /sys/android_touch/doubletap2wake
+
+    # Disable sweep to sleep
+    chown root root /sys/android_touch/sweep2sleep
+    chmod 666 /sys/android_touch/sweep2sleep
+    write /sys/android_touch/sweep2sleep 0
+    chmod 644 /sys/android_touch/sweep2sleep
+
+    # Enable sweep to wake in up direction
+    chown root root /sys/android_touch/sweep2wake
+    chmod 666 /sys/android_touch/sweep2wake
+    write /sys/android_touch/sweep2wake 4
+    chmod 644 /sys/android_touch/sweep2wake
+
+    # Disable camera gesture
+    chown root root /sys/android_touch/camera_gesture
+    chmod 666 /sys/android_touch/camera_gesture
+    write /sys/android_touch/camera_gesture 0
+    chmod 644 /sys/android_touch/camera_gesture
+
+    # Set vibration strength to 27 (50% in EXKM)
+    chown root root /sys/android_touch/vib_strength
+    chmod 666 /sys/android_touch/vib_strength
+    write /sys/android_touch/vib_strength 27
+    chmod 644 /sys/android_touch/vib_strength
+
+on property:sys.boot_completed=1
+    # Enable Fingerprint boost
+    write /sys/kernel/fp_boost/enabled 1
