@@ -31,6 +31,15 @@ is_slot_device=0;
 chmod -R 755 $ramdisk
 
 
+## Alert of unsupported Android version
+android_ver=$(mount /system; grep "^ro.build.version.release" /system/build.prop | cut -d= -f2; umount /system);
+case "$android_ver" in
+  "7.0"|"7.1"|"7.1.1") compatibility_string="your version is unsupported, expect no support!";;
+  "7.1.2") compatibility_string="your version is supported!";;
+esac;
+ui_print "Running Android $android_ver, $compatibility_string";
+
+
 ## AnyKernel install
 dump_boot;
 
