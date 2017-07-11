@@ -2,5 +2,10 @@
 # Pieces taken from @anarkia1976, @franciscofranco, @frap129, and @flar2
 
 on property:sys.boot_completed=1
+    # according to Qcom this legacy value improves first launch latencies
+    # stock value is 512k
+    # from franciscofranco
+    setprop dalvik.vm.heapminfree 2m
+
     # Enable Fingerprint boost
     write /sys/kernel/fp_boost/enabled 1
