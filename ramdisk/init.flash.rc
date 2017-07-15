@@ -70,6 +70,12 @@ on property:sys.boot_completed=1
     # Enable Fingerprint boost
     write /sys/kernel/fp_boost/enabled 1
 
+    # Sound settings
+    write /sys/kernel/sound_control/speaker_gain "23 23"
+    write /sys/kernel/sound_control/headphone_pa_gain "1 1"
+    write /sys/kernel/sound_control/mic_gain 10
+    write /sys/kernel/sound_control/headphone_gain "6 6"
+
     # Vibration strength
     write /sys/class/timed_output/vibrator/vmax_mv_strong 2000
     write /sys/class/timed_output/vibrator/vmax_mv_light 1650
