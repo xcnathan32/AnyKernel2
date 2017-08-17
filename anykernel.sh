@@ -45,6 +45,9 @@ dump_boot;
 
 # begin ramdisk changes
 
+# Disable BIG cores
+patch_cmdline "maxcpus=4" "maxcpus=4";
+
 # init.flash.rc
 insert_line init.angler.rc "init.flash.rc" after "import init.angler.sensorhub.rc" "import init.flash.rc";
 

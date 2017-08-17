@@ -10,6 +10,13 @@ on property:sys.boot_completed=1
     # from franciscofranco
     setprop dalvik.vm.heapminfree 2m
 
+    # Utilize all 4 cores
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/background/cpus 3
+    write /dev/cpuset/system-background/cpus 2-3
+    write /dev/cpuset/top-app/cpus 0-3
+
     # Make sure governor sys paths have the correct permissions
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
     chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
