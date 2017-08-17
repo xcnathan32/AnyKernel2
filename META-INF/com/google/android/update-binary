@@ -58,6 +58,7 @@ ui_print " ";
 ui_print " ";
 
 ui_print "$(file_getprop /tmp/anykernel/anykernel.sh kernel.string)";
+ui_print "Modified to use 4 cores by @XCnathan32"
 ui_print " ";
 ui_print "AnyKernel2 by osm0sis @ xda-developers";
 ui_print " ";

@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() {
-kernel.string=Flash Kernel by @nathanchance
+kernel.string=Flash Kernel by @nathanchance,
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
